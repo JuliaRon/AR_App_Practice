@@ -34,6 +34,13 @@ public class ARObjectPlacement : MonoBehaviour
                 if(instantiatedCube == null)
                 {
                     instantiatedCube = Instantiate(cube);
+
+                    foreach(var plane in origin.GetComponent<ARPlaneManager>().trackables)
+                    {
+                        plane.gameObject.SetActive(false);
+                    }
+
+                    origin.GetComponent<ARPlaneManager>().enabled = false;
                 }
 
                 instantiatedCube.transform.position = raycasthits[0].pose.position;
